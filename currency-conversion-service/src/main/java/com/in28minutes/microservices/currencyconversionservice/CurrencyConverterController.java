@@ -35,7 +35,7 @@ public class CurrencyConverterController {
 	        "http://localhost:8000/currency-exchange/from/{from}/to/{to}", // from here we can take response from currency-exchange which is configured in one place
 	        CurrencyConversionBean.class, 
 	        uriVariables); // in this case added only {from} and {to}. Other things are from currency-exchange
-	    
+
 	    CurrencyConversionBean response = responseEntity.getBody();
 	    
 	    return new CurrencyConversionBean(response.getId(),from,to,response.getConversionMultiple(),
@@ -50,9 +50,8 @@ public class CurrencyConverterController {
 	    
 	    CurrencyConversionBean response = proxy.retrieveExchangeValue(from, to);
 
-	    logger.info("{}", response);
-
 	    return new CurrencyConversionBean(response.getId(),from,to,response.getConversionMultiple(),
 	        quantity,quantity.multiply(response.getConversionMultiple()),response.getPort()); 
 	  }
+
 }
