@@ -41,7 +41,7 @@ public class CurrencyConverterController {
 	    return new CurrencyConversionBean(response.getId(),from,to,response.getConversionMultiple(),
 	        quantity,quantity.multiply(response.getConversionMultiple()),response.getPort()); 
 	  }
-	 
+
 	 @GetMapping("/currency-converter-feign/from/{from}/to/{to}/quantity/{quantity}")
 	  public CurrencyConversionBean convertCurrencyFeign(@PathVariable String from,
 	      @PathVariable String to,
@@ -49,6 +49,8 @@ public class CurrencyConverterController {
 	      ){
 	    
 	    CurrencyConversionBean response = proxy.retrieveExchangeValue(from, to);
+
+	    logger.info("{}", response);
 
 	    return new CurrencyConversionBean(response.getId(),from,to,response.getConversionMultiple(),
 	        quantity,quantity.multiply(response.getConversionMultiple()),response.getPort()); 
